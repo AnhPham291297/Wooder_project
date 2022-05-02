@@ -1,0 +1,318 @@
+// Progressbar-top
+#progressbar-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: $yellow-cl;
+  z-index: 1000;
+}
+
+// css header
+.header {
+  --heightHeader: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--heightHeader);
+  width: 100%;
+  z-index: 99;
+  @include transition($t);
+
+  @include midflex;
+
+  .container-fluid {
+    @include spbwflex;
+    height: 100%;
+
+    .logo {
+      img {
+        width: 180px;
+        display: block;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+
+    .navlist {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      li {
+        display: inline-block;
+        margin: 0 3rem;
+        @include transition($t);
+
+        @include md {
+          margin: 0 1.5rem;
+        }
+
+        a {
+          // color: $white-cl;
+          // font-size: var(--body16-fs);
+          // line-height: var(--body16-lh);
+          // text-transform: uppercase;
+          transition: all 0.3s;
+          @include text(15px, pb, normal, $white-cl, uppercase);
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background: $yellow-cl;
+            @include transform(scale(0));
+            @include transform-origin(left center);
+            @include transition($t);
+          }
+
+          &.active {
+            color: $yellow-cl;
+            &::after {
+              @include transform(scale(1));
+              @include transform-origin(right center);
+            }
+          }
+
+          &:hover {
+            color: $yellow-cl;
+            &::after {
+              @include transform(scale(1));
+              @include transform-origin(right center);
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      .lang {
+        height: 100%;
+        @include midflex;
+        position: relative;
+
+        &__current {
+          // display: inline-flex;
+          // align-items: center;
+          cursor: pointer;
+          @include midflex;
+          opacity: 0.8;
+
+          span {
+            // font-size: 1.6rem;
+            // color: #ffffff;
+            margin-right: 6px;
+            @include text(--body16-fs, pb, normal, $white-cl, uppercase);
+          }
+
+          img {
+            width: 9px;
+          }
+        }
+
+        &__option {
+          width: 60px;
+          height: auto;
+          background: #eee;
+          position: absolute;
+          right: 0;
+          top: var(--heightHeader);
+          text-align: center;
+          // display: block;
+          opacity: 0;
+          pointer-events: none;
+          transition: 0.3s;
+
+          a {
+            padding: 10px 0;
+            display: block;
+            transition: all 0.3s;
+            @include text(15px, pb, normal, $yellow-cl, uppercase);
+            cursor: pointer;
+
+            &:hover {
+              background: #464646;
+              color: $white-cl;
+            }
+          }
+        }
+
+        &.active {
+          .lang__option {
+            opacity: 1;
+            pointer-events: auto;
+            transition: 0.3s;
+          }
+          .lang__current {
+            span {
+              opacity: 1;
+              color: $yellow-cl;
+              transition: 0.3s;
+            }
+          }
+        }
+        // &:hover {
+        //   .lang__option {
+        //     display: block;
+        //   }
+        // }
+
+        @include sm {
+          margin-right: 20px;
+        }
+      }
+
+      .hamburger {
+        cursor: pointer;
+        display: none;
+
+        .bar {
+          width: 25px;
+          height: 3px;
+          margin: 5px auto;
+          background: $yellow-cl;
+          display: block;
+          @include transition($t);
+        }
+      }
+    }
+  }
+
+  &.sticky {
+    background: #000;
+  }
+}
+
+.nav-mobile {
+  display: none;
+}
+
+@include sm {
+  html {
+    font-size: 60%;
+  }
+
+  .header {
+    --heightHeader: 60px;
+    height: var(--heightHeader);
+
+    .container-fluid {
+      .navlist {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .right {
+        display: flex;
+
+        .hamburger {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .nav-mobile {
+    --heightHeader: 60px;
+    position: fixed;
+    left: -100%;
+    top: var(--heightHeader);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #000;
+    @include transition($t);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+      left: 0;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    ul {
+      text-align: center;
+
+      li {
+        a {
+          // color: $white-cl;
+          // font-size: var(--body16-fs);
+          // line-height: var(--body16-lh);
+          // text-transform: uppercase;
+          transition: all 0.3s;
+          @include text(18px, pb, normal, $white-cl, uppercase);
+          position: relative;
+          display: inline-block;
+          margin: 20px 0;
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background: $yellow-cl;
+            @include transform(scale(0));
+            @include transform-origin(left center);
+            @include transition($t);
+          }
+
+          // &.active {
+          //   color: $yellow-cl;
+          //   &::after {
+          //     @include transform(scale(1));
+          //     @include transform-origin(right center);
+          //   }
+          // }
+
+          &:hover {
+            color: $yellow-cl;
+            &::after {
+              @include transform(scale(1));
+              @include transform-origin(right center);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include xs {
+  html {
+    font-size: 55%;
+  }
+}

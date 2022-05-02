@@ -1,0 +1,151 @@
+.heading-primary {
+  // font-size: 8rem;
+  // color: #bea67c;
+  // font-weight: 600;
+  letter-spacing: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  @include text(8.3rem, pb, normal, $yellow-cl, uppercase);
+
+  @include xxs {
+    letter-spacing: 5px;
+    font-size: 7rem;
+  }
+}
+
+.heading-secondary {
+  // font-size: 4rem;
+  // color: #010101;
+  // font-weight: 600;
+  // text-transform: uppercase;
+  // margin-bottom: 20px;
+  letter-spacing: 0.7px;
+  @include text(4rem, pb, normal, $text-cl, uppercase);
+}
+
+.heading-tetiary {
+  // font-size: 4rem;
+  // color: #bea67c;
+  // font-weight: 600;
+  // letter-spacing: 1px;
+  // text-transform: uppercase;
+  letter-spacing: 0.7px;
+  @include text(4rem, pb, normal, $yellow-cl, uppercase);
+}
+
+.subheading {
+  // font-size: 1.8rem;
+  // text-transform: uppercase;
+  // color: #000000;
+  @include text(1.8rem, pb, normal, $text-cl, uppercase);
+}
+
+.description {
+  font-size: 1.6rem;
+  color: $gray-cl;
+  font-family: pb;
+  @include overtext(3);
+}
+
+.step-description {
+  font-size: 1.6rem;
+  color: $white-cl;
+}
+
+.btnmain {
+  display: inline-block;
+  padding: 12px 40px;
+  border: 2px solid $white-cl;
+  // color: $white-cl;
+  // font-size: 1.4rem;
+  // text-transform: uppercase;
+  letter-spacing: 3.2px;
+  @include text(1.4rem, pb, normal, $white-cl, uppercase);
+  transition: all 0.5s;
+
+  img {
+    width: 30px;
+  }
+
+  &:hover {
+    letter-spacing: 6px;
+    background: $yellow-cl;
+  }
+}
+
+.btnctr {
+  border: 1px solid #ffffff;
+  padding: 0.8rem 2.4rem;
+  cursor: pointer;
+  @include midflex;
+  margin-left: -1px;
+  @include transition(0.3s);
+
+  img {
+    width: 30px;
+  }
+
+  &:hover {
+    background-color: #bea67c;
+  }
+}
+
+.btnmore {
+  display: inline-block;
+  margin-top: 20px;
+  letter-spacing: 2px;
+  @include text(1.4rem, pb, normal, $text-cl, uppercase);
+  position: relative;
+  transition: all 0.5s;
+
+  img {
+    filter: invert(100%);
+    width: 30px;
+    @include transform(translateX(0px));
+    @include transition($t);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: $yellow-cl;
+  }
+
+  &:hover {
+    img {
+      @include transform(translateX(10px));
+    }
+    // letter-spacing: 4px;
+  }
+}
+
+.btnthree {
+  display: inline-block;
+  // font-size: 1.6rem;
+  // text-transform: uppercase;
+  letter-spacing: 3.2px;
+  @include text(1.2rem, pb, normal, $white-cl, uppercase);
+  padding: 0 60px;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transition: all 0.5s;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  cursor: pointer;
+
+  &:hover {
+    // letter-spacing: 6px;
+    background: $yellow-cl;
+  }
+
+  img {
+    width: 20px;
+    margin-right: 10px;
+  }
+}
